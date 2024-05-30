@@ -1,12 +1,10 @@
 import {
   Card,
   CardBody,
-  HStack,
   Image,
   Heading,
   Text,
   VStack,
-  CardHeader,
   Stack,
   Divider,
   CardFooter,

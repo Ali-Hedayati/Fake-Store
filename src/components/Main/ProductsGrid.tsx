@@ -1,13 +1,12 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
-import useProducts, { Products } from "../Hooks/useProducts";
+import { SimpleGrid } from "@chakra-ui/react";
+import useProducts from "../Hooks/useProducts";
 import ProductCard from "./ProductCard";
 
 interface Props {
   selectCategory: string | null;
 }
 const ProductGrid = ({ selectCategory }: Props) => {
- 
-  const { data, isLoading, error } = useProducts(selectCategory);
+  const { data } = useProducts(selectCategory);
   return (
     <SimpleGrid
       columns={{
