@@ -1,4 +1,3 @@
-import apiClient from "../../services/api-client";
 import useData from "./useData";
 
 export interface Product {
@@ -13,7 +12,9 @@ export interface Product {
 export interface Products {
   products: Product[];
 }
-const useProducts = () => useData<Product>("/products");
+const useProducts = (selectCategory: string | null) => {
+  const request = selectCategory ? `/category/${selectCategory}` : '';
+  return useData<Product>(`/products${request}`);
+};
 
 export default useProducts;
-//   apiClient.get("/products").then((res) => console.log(res.data));

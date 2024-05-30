@@ -5,7 +5,7 @@ import { HStack } from "@chakra-ui/react";
 const Header = () => {
   return (
     <HStack justify="space-between">
-      <FcShop size={45} />
+      <FcShop size={70} />
       <ColorModeSwitch />
     </HStack>
   );

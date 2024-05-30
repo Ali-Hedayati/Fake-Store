@@ -1,8 +1,12 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
+import Nav from "./components/Nav/Nav";
+import { useState } from "react";
+import ProductGrid from "./components/Main/ProductsGrid";
 
 function App() {
+  const [selectCategory, setSelectCategory] = useState<string | null>(null);
   return (
     <>
       <Grid
@@ -26,13 +30,16 @@ function App() {
         </GridItem>
         {/* this section will not display in movile size */}
         <Show above="lg">
-          <GridItem bg="pink.300" area={"nav"}>
-            Nav
+          <GridItem area={"nav"}>
+            <Nav
+              onSelectCategory={(category) => setSelectCategory(category)}
+              selectedCategory={selectCategory}
+            />
           </GridItem>
         </Show>
 
         <GridItem area={"main"}>
-          <Main />
+          <ProductGrid selectCategory={selectCategory} />
         </GridItem>
         <GridItem bg="blue.300" area={"footer"}>
           Footer

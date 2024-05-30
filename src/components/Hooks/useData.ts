@@ -6,7 +6,6 @@ const useData = <T>(endpoint: string) => {
   const [data, setData] = useState<T[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
   useEffect(() => {
     const controller = new AbortController();
 
@@ -17,7 +16,7 @@ const useData = <T>(endpoint: string) => {
         setData(res.data);
         setIsLoading(false);
         setError("");
-        console.log("in usedata: ", res);
+       
       })
       .catch((err) => {
         if (err instanceof CanceledError) return null;
@@ -26,7 +25,7 @@ const useData = <T>(endpoint: string) => {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [endpoint]);
   return { data, isLoading, error };
 };
 
