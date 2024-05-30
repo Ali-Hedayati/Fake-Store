@@ -1,6 +1,6 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import Header from "./components/Header/Header";
-import Main from "./components/Header/Main/Main";
+import Main from "./components/Main/Main";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
           </GridItem>
         </Show>
 
-        <GridItem  area={"main"}>
+        <GridItem area={"main"}>
           <Main />
         </GridItem>
         <GridItem bg="blue.300" area={"footer"}>

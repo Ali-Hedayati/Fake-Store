@@ -1,7 +1,7 @@
 import apiClient from "../../services/api-client";
 import useData from "./useData";
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   price: number;
@@ -10,7 +10,7 @@ interface Product {
   image: string;
 }
 
-interface Products {
+export interface Products {
   products: Product[];
 }
 const useProducts = () => useData<Product>("/products");
