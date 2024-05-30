@@ -1,6 +1,5 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
 import Nav from "./components/Nav/Nav";
 import { useState } from "react";
 import ProductGrid from "./components/Main/ProductsGrid";
