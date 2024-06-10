@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Spinner } from "@chakra-ui/react";
 import useProducts from "../Hooks/useProducts";
 import ProductCard from "./ProductCard";
 
@@ -6,7 +6,12 @@ interface Props {
   selectCategory: string | null;
 }
 const ProductGrid = ({ selectCategory }: Props) => {
-  const { data } = useProducts(selectCategory);
+  const { data, error, isLoading } = useProducts(selectCategory);
+  console.log("what is data: " + data);
+  if (error) throw error;
+
+  if (isLoading) return <Spinner />;
+
   return (
     <SimpleGrid
       columns={{
@@ -17,7 +22,7 @@ const ProductGrid = ({ selectCategory }: Props) => {
       }}
       spacing={7}
     >
-      {data.map((product) => (
+      {data?.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </SimpleGrid>
