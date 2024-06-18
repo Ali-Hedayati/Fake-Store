@@ -1,4 +1,4 @@
-import useCategories from "../Hooks/useCategory";
+import useCategories from "../Hooks/useCategories";
 import { List, ListItem, Button } from "@chakra-ui/react";
 
 interface Props {
@@ -7,7 +7,8 @@ interface Props {
 }
 
 const Nav = ({ onSelectCategory, selectedCategory }: Props) => {
-  const { data } = useCategories();
+  const {data} = useCategories();
+  console.log("in nav", data);
   return (
     <List padding={2}>
       <ListItem>

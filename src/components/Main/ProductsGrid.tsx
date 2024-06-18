@@ -7,7 +7,6 @@ interface Props {
 }
 const ProductGrid = ({ selectCategory }: Props) => {
   const { data, error, isLoading } = useProducts(selectCategory);
-  console.log("what is data: " + data);
   if (error) throw error;
 
   if (isLoading) return <Spinner />;
