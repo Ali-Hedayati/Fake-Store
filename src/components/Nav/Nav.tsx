@@ -1,5 +1,5 @@
 import useCategories from "../Hooks/useCategories";
-import { List, ListItem, Button } from "@chakra-ui/react";
+import { List, ListItem, Button, Spinner } from "@chakra-ui/react";
 
 interface Props {
   onSelectCategory: (category: string) => void;
@@ -7,8 +7,11 @@ interface Props {
 }
 
 const Nav = ({ onSelectCategory, selectedCategory }: Props) => {
-  const {data} = useCategories();
-  console.log("in nav", data);
+  const { data, isLoading, error } = useCategories();
+  if (error) throw error;
+
+  if (isLoading) return <Spinner />;
+  console.log("data in nav", data);
   return (
     <List padding={2}>
       <ListItem>
@@ -23,7 +26,7 @@ const Nav = ({ onSelectCategory, selectedCategory }: Props) => {
           All
         </Button>
       </ListItem>
-      {data.map((category) => {
+      {data?.map((category) => {
         return (
           <ListItem key={category} padding={1}>
             <Button
