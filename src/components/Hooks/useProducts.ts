@@ -1,4 +1,6 @@
-import useData from "./useData";
+import { useQuery } from "@tanstack/react-query";
+import apiClient from "../../services/api-client";
+
 
 export interface Product {
   id: number;
@@ -9,12 +11,29 @@ export interface Product {
   image: string;
 }
 
-export interface Products {
-  products: Product[];
-}
 const useProducts = (selectCategory: string | null) => {
-  const request = selectCategory ? `/category/${selectCategory}` : '';
-  return useData<Product>(`/products${request}`);
+  const fetchProducts = (category: string | null) => {
+    const request = category ? `/category/${category}` : "";
+    return apiClient.get(`/products${request}`).then((res) => res.data);
+  };
+
+  return useQuery<Product[]>({
+    queryKey: ["products", selectCategory],
+    queryFn: () => fetchProducts(selectCategory),
+  });
 };
 
 export default useProducts;
+
+// {
+//   const request = selectCategory ? `/category/${selectCategory}` : "";
+//   return useData<Product>(`/products${request}`);
+// }
+
+// const request = selectCategory ? `/category/${selectCategory}` : "";
+//   console.log("usePrdofucts: " + request);
+//   return useQuery<Product[]>({
+//     queryKey: ["products"],
+//     queryFn: () =>
+//       apiClient.get<Product>(`/products${request}`).then((res) => res.data),
+//   });
