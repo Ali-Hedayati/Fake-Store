@@ -1,11 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../../services/api-client";
 
-interface Props {
-  selectCategory: string | null;
-  sortOrder: string | null;
-}
-
 export interface Product {
   id: number;
   title: string;
