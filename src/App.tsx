@@ -6,6 +6,7 @@ import ProductGrid from "./components/Main/ProductsGrid";
 
 function App() {
   const [selectCategory, setSelectCategory] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<string | null>(null);
   return (
     <>
       <Grid
@@ -33,12 +34,14 @@ function App() {
             <Nav
               onSelectCategory={(category) => setSelectCategory(category)}
               selectedCategory={selectCategory}
+              sortOrder={sortOrder}
+              onSortCategories={setSortOrder}
             />
           </GridItem>
         </Show>
 
         <GridItem area={"main"}>
-          <ProductGrid selectCategory={selectCategory} />
+          <ProductGrid selectCategory={selectCategory}  sortOrder={sortOrder} />
         </GridItem>
         <GridItem bg="blue.300" area={"footer"}>
           Footer

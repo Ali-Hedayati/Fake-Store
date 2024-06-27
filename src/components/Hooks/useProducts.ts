@@ -1,6 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../../services/api-client";
 
+interface Props {
+  selectCategory: string | null;
+  sortOrder: string | null;
+}
 
 export interface Product {
   id: number;
@@ -11,15 +15,21 @@ export interface Product {
   image: string;
 }
 
-const useProducts = (selectCategory: string | null) => {
-  const fetchProducts = (category: string | null) => {
+const useProducts = (
+  selectCategory: string | null,
+  sortOrder: string | null
+) => {
+  console.log("sort is :", sortOrder);
+  const fetchProducts = (category: string | null, sortOrder: string | null) => {
     const request = category ? `/category/${category}` : "";
-    return apiClient.get(`/products${request}`).then((res) => res.data);
+    return apiClient
+      .get(`/products${request}`, { params: { sort: sortOrder } })
+      .then((res) => res.data);
   };
 
   return useQuery<Product[]>({
-    queryKey: ["products", selectCategory],
-    queryFn: () => fetchProducts(selectCategory),
+    queryKey: ["products", selectCategory, sortOrder],
+    queryFn: () => fetchProducts(selectCategory, sortOrder),
   });
 };
 
