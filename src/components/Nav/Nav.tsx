@@ -1,4 +1,4 @@
-import useCategories from "../hooks/useCategories";
+import useCategories from "../Hooks/useCategories";
 import { Spinner, Box } from "@chakra-ui/react";
 import CategoriesList from "./CategoriesList";
 import SortCategories from "./SortCategories";
