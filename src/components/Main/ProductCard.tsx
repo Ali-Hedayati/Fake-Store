@@ -12,6 +12,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Product } from "../Hooks/useProducts";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: Product;
@@ -21,7 +22,9 @@ const ProductCard = ({ product }: Props) => {
   return (
     <Card>
       <CardBody>
-        <Image src={product.image} alt={product.title} borderRadius="lg" />
+        <Link to={"/products/" + product.id}>
+          <Image src={product.image} alt={product.title} borderRadius="lg" />
+        </Link>
         <Stack mt="6" spacing="3">
           <Heading size="md">{product.title}</Heading>
         </Stack>
