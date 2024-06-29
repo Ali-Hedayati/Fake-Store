@@ -1,6 +1,13 @@
 import { useParams } from "react-router-dom";
 import useProduct from "../components/Hooks/useProduct";
-import { Heading, Spinner, Text } from "@chakra-ui/react";
+import {
+  GridItem,
+  Heading,
+  SimpleGrid,
+  Spinner,
+  Text,
+  Image,
+} from "@chakra-ui/react";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -11,9 +18,15 @@ const ProductDetailPage = () => {
 
   return (
     <>
-      <Heading>{data.title}</Heading>
-
-      <Text>{data.description} </Text>
+      <SimpleGrid columns={{ base: 1 }} spacing={5}>
+        <GridItem>
+          <Heading>{data.title}</Heading>
+          <Text>{data.description} </Text>
+        </GridItem>
+        <GridItem>
+          <Image src={data.image} alt={data.title} borderRadius="lg" />
+        </GridItem>
+      </SimpleGrid>
     </>
   );
 };
