@@ -4,9 +4,15 @@ import Nav from "./components/Nav/Nav";
 import { useState } from "react";
 import ProductGrid from "./components/Main/ProductsGrid";
 
+export interface ProductQuery {
+  selectCategory: string | null;
+  sortOrder: string | null;
+}
+
 function App() {
-  const [selectCategory, setSelectCategory] = useState<string | null>(null);
-  const [sortOrder, setSortOrder] = useState<string | null>(null);
+  const [productQuery, setProductQuery] = useState<ProductQuery>(
+    {} as ProductQuery
+  );
   return (
     <>
       <Grid
@@ -32,16 +38,19 @@ function App() {
         <Show above="lg">
           <GridItem area={"nav"}>
             <Nav
-              onSelectCategory={(category) => setSelectCategory(category)}
-              selectedCategory={selectCategory}
-              sortOrder={sortOrder}
-              onSortCategories={setSortOrder}
+              onSelectCategory={(selectCategory) =>
+                setProductQuery({ ...productQuery, selectCategory })
+              }
+              productQuery={productQuery}
+              onSortCategories={(sortOrder) =>
+                setProductQuery({ ...productQuery, sortOrder })
+              }
             />
           </GridItem>
         </Show>
 
         <GridItem area={"main"}>
-          <ProductGrid selectCategory={selectCategory}  sortOrder={sortOrder} />
+          <ProductGrid productQuery={productQuery}/>
         </GridItem>
         <GridItem bg="blue.300" area={"footer"}>
           Footer

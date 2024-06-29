@@ -1,13 +1,14 @@
 import { SimpleGrid, Spinner } from "@chakra-ui/react";
 import useProducts from "../Hooks/useProducts";
 import ProductCard from "./ProductCard";
+import {ProductQuery} from "../../App";
 
 interface Props {
-  selectCategory: string | null;
-  sortOrder: string | null;
+  productQuery: ProductQuery;
 }
-const ProductGrid = ({ selectCategory, sortOrder }: Props) => {
-  const { data, error, isLoading } = useProducts(selectCategory, sortOrder);
+
+const ProductGrid = ({ productQuery }: Props) => {
+  const { data, error, isLoading } = useProducts(productQuery);
   if (error) throw error;
 
   if (isLoading) return <Spinner />;

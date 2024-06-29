@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../../services/api-client";
+import { ProductQuery } from "../../App";
 
 export interface Product {
   id: number;
@@ -10,10 +11,11 @@ export interface Product {
   image: string;
 }
 
-const useProducts = (
-  selectCategory: string | null,
-  sortOrder: string | null
-) => {
+const useProducts = (productQuery: ProductQuery) => {
+  const sortOrder = productQuery.sortOrder;
+  const selectCategory = productQuery.selectCategory;
+
+  
   console.log("sort is :", sortOrder);
   const fetchProducts = (category: string | null, sortOrder: string | null) => {
     const request = category ? `/category/${category}` : "";

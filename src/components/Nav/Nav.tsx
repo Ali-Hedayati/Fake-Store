@@ -2,20 +2,17 @@ import useCategories from "../Hooks/useCategories";
 import { Spinner, Box } from "@chakra-ui/react";
 import CategoriesList from "./CategoriesList";
 import SortCategories from "./SortCategories";
-
+import { ProductQuery } from "../../App";
 interface Props {
   onSelectCategory: (category: string) => void;
-  selectedCategory: string | null;
+
   onSortCategories: (sortOrder: string) => void;
-  sortOrder: string | null;
+  productQuery: ProductQuery;
 }
 
-const Nav = ({
-  onSelectCategory,
-  selectedCategory,
-  onSortCategories,
-  sortOrder,
-}: Props) => {
+const Nav = ({ onSelectCategory, productQuery, onSortCategories }: Props) => {
+  const selectCategory = productQuery.selectCategory;
+  const sortOrder = productQuery.sortOrder;
   const { data, isLoading, error } = useCategories();
   if (error) throw error;
 
@@ -24,7 +21,7 @@ const Nav = ({
     <Box padding={2}>
       <CategoriesList
         onSelectCategory={onSelectCategory}
-        selectedCategory={selectedCategory}
+        selectedCategory={selectCategory}
         data={data}
       />
       <Box marginY={2}>
