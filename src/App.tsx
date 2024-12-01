@@ -5,6 +5,7 @@ import { useState } from "react";
 import ProductGrid from "./components/Main/ProductsGrid";
 
 function App() {
+  console.log('hi')
   const [selectCategory, setSelectCategory] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<string | null>(null);
   return (
